@@ -22,6 +22,7 @@ int main()
 	
 	FILE *fp = fopen("output.csv", "w"); /* Output file */
 	fprintf(fp, "Data size\tTime\n");
+	fclose(fp);
 
 	/* Initialization */
 	lda = N;
@@ -46,13 +47,17 @@ int main()
 		{
 			if(LAPACKE_dsyev( LAPACK_ROW_MAJOR, 'V', 'U', n, A, lda, w ))
 			{
+				FILE *fp = fopen("output.csv", "w"); /* Output file */
 				printf("Failed to calculate eigenvalues and eigenvectors\n");
+				fclose(fp);
 				exit(1);
 			}
 		}
 		end = clock();
 		exec_time = (double)(end - start) / CLOCKS_PER_SEC;
-		exec_time = exec_time/1000;                         /* divide by 1000 because of # of iterations */
+		exec_time = exec_time/1000;                         /* divide by 1000 because of # of iterations */	
+		FILE *fp = fopen("output.csv", "w"); /* Output file */
 		fprintf(fp, "%d\t%f,\n", rows, exec_time);
+		fclose(fp);
 	}
 }
