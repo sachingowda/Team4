@@ -12,7 +12,7 @@
 
 int main()
 {
-	int i,j;
+	int i,j,return_eig;
 	MKL_INT lda, n;
 	double A[ROWS][COLUMNS]={0};     /* A is an nxn matrix */
     double w[N];
@@ -45,13 +45,16 @@ int main()
 		start = clock();
 		for (i = 0; i < 1000; i++) //1000 iterations
 		{
+			return_eig = LAPACKE_dsyev( LAPACK_ROW_MAJOR, 'V', 'U', n, A, lda, w );
+			/*
 			if(LAPACKE_dsyev( LAPACK_ROW_MAJOR, 'V', 'U', n, A, lda, w ))
 			{
-				FILE *fp = fopen("output.csv", "w"); /* Output file */
+				FILE *fp = fopen("output.csv", "w");
 				printf("Failed to calculate eigenvalues and eigenvectors\n");
 				fclose(fp);
 				exit(1);
 			}
+			*/
 		}
 		end = clock();
 		exec_time = (double)(end - start) / CLOCKS_PER_SEC;
