@@ -1,2 +1,2 @@
 eig: eigenvalue.c
-	gcc eigenvalue.c -o eigen1 -mkl
+	icc -mmic -mkl eigenvalue_short.c -o eigen1 -lm
