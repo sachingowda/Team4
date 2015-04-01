@@ -45,8 +45,7 @@ int main()
 		start = clock();
 		for (i = 0; i < 1000; i++) //1000 iterations
 		{
-			return_eig = LAPACKE_dsyev( LAPACK_ROW_MAJOR, 'V', 'U', N, A, lda, w );
-
+			return_eig = LAPACKE_dsyev( LAPACK_ROW_MAJOR, 'V', 'U', n, A, lda, w );
 		}
 		end = clock();
 		exec_time = (double)(end - start) / CLOCKS_PER_SEC;
