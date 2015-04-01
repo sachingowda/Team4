@@ -48,12 +48,12 @@ int main()
 			return_eig = LAPACKE_dsyev( LAPACK_ROW_MAJOR, 'V', 'U', n, A, lda, w );
 
 		}
-		free(A);
 		end = clock();
 		exec_time = (double)(end - start) / CLOCKS_PER_SEC;
 		exec_time = exec_time/1000;                         /* divide by 1000 because of # of iterations */	
 		FILE *fp2 = fopen("output.csv", "w"); /* Output file */
 		fprintf(fp2, "%d\t%f,\n", rows, exec_time);
 		fclose(fp2);
+		free(A);
 	}
 }
