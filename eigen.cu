@@ -71,13 +71,11 @@ int main()
 		cudaMalloc(&Work, lwork * sizeof(double));
 		
 		start = omp_get_wtime();
-		start = 1;
 		for (i = 0; i < 1000; i++) //1000 iterations
 		{
 			cusolverDnDgebrd(cuda_eigen_handle, n, n, cuda_A, lda, D, E, TAUQ, TAUP, Work, lwork, devInfo);
 		}
 		end = omp_get_wtime();
-		end = 0;
 		
 		exec_time = (double)(end - start);
 		exec_time = exec_time/1000;                         /* divide by 1000 because of # of iterations */	
