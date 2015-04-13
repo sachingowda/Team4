@@ -70,13 +70,13 @@ int main()
 		eigen_buf_status = cusolverDnDgebrd_bufferSize(cuda_eigen_handle, n, n, &lwork );
 		cudaMalloc(&Work, lwork * sizeof(double));
 		
-		//start = omp_get_wtime();
+		start = omp_get_wtime();
 		start = 1;
 		for (i = 0; i < 1000; i++) //1000 iterations
 		{
 			cusolverDnDgebrd(cuda_eigen_handle, n, n, cuda_A, lda, D, E, TAUQ, TAUP, Work, lwork, devInfo);
 		}
-		//end = omp_get_wtime();
+		end = omp_get_wtime();
 		end = 0;
 		
 		exec_time = (double)(end - start);
